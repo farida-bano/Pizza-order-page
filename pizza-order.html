@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #ff6600;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 2em;
+            margin: 1em 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin: 0.5em 0 0.2em;
+        }
+
+        form input, form select, form button {
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+
+        #map {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        a {
+            color: #ff6600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .logo img {
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Maintains aspect ratio */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pizza Paradise</h1>
+        <nav>
+            <ul>
+                <li><a href="#order">Order</a></li>
+                <li><a href="#delivery">Delivery</a></li>
+                <li><a href="#payment">Payment</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#social-media">Social Media</a></li>
+                <li><a href="#variety">Variety of Pizzas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="logo">
+        <img src="123.jpg" alt="Pizza Paradise Logo">
+    </div>
+    <section id="order">
+        <h2>Order Your Pizza</h2>
+        <form>
+            <label for="pizza-type">Choose Your Pizza:</label>
+            <select id="pizza-type" name="pizza-type">
+                <option value="margherita">Margherita</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="bbq-chicken">BBQ Chicken</option>
+                <option value="veggie">Veggie</option>
+            </select>
+            <br>
+            <label for="pizza-size">Choose Pizza Size:</label>
+            <select id="pizza-size" name="pizza-size">
+                <option value="small">Small (4 slices)</option>
+                <option value="medium">Medium (8 slices)</option>
+                <option value="large">Large (12 slices)</option>
+            </select>
+            <br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="10">
+            <br>
+            <button type="submit">Order Now</button>
+        </form>
+        <p id="price"></p>
+    </section>
+
+    <section id="delivery">
+        <h2>Delivery Information</h2>
+        <p>Fast and reliable delivery to your doorstep. Track your order in real-time.</p>
+    </section>
+
+    <section id="payment">
+        <h2>Payment Details</h2>
+        <form>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number">
+            <br>
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY">
+            <br>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv">
+            <br>
+            <button type="submit">Pay Now</button>
+        </form>
+    </section>
+
+    <section id="location">
+        <h2>Our Location</h2>
+        <p>123 Pizza Street, Food City, Country</p>
+        <div id="map"></div>
+    </section>
+
+    <section id="social-media">
+        <h2>Follow Us</h2>
+        <a href="https://www.facebook.com" target="_blank">Facebook</a>
+        <a href="https://www.twitter.com" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+    </section>
+
+    <section id="variety">
+        <h2>Variety of Pizzas</h2>
+        <ul>
+            <li>Margherita</li>
+            <li>Pepperoni</li>
+            <li>BBQ Chicken</li>
+            <li>Veggie</li>
+            <li>Hawaiian</li>
+            <li>Meat Lovers</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Pizza Paradise. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("pizza-type").addEventListener("change", updatePrice);
+        document.getElementById("pizza-size").addEventListener("change", updatePrice);
+
+        function updatePrice() {
+            var pizzaType = document.getElementById("pizza-type").value;
+            var pizzaSize = document.getElementById("pizza-size").value;
+            var price = calculatePrice(pizzaType, pizzaSize);
+            document.getElementById("price").innerText = "Price: $" + price.toFixed(2);
+        }
+
+        function calculatePrice(type, size) {
+            var basePrice = 0;
+            // Define base prices for each type of pizza and size
+            if (type === "margherita") {
+                basePrice = 8.99;
+            } else if (type === "pepperoni") {
+                basePrice = 9.99;
+            } else if (type === "bbq-chicken") {
+                basePrice = 10.99;
+            } else if (type === "veggie") {
+                basePrice = 10.49;
+            }
+            // Adjust price based on size
+            if (size === "medium") {
+                basePrice *= 1.5
+       // Adjust price based on size
+       if (size === "medium") {
+            basePrice *= 1.5; // Increase by 50% for medium size
+        } else if (size === "large") {
+            basePrice *= 2; // Double the price for large size
+        }
+        return basePrice;
+    }
+</script>
